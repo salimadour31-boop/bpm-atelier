@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BPM Atelier</title>
+<meta name="description" content="Tap tempo, délais/réverb et points de coupe vidéo synchronisés au rythme.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- En-tête : titre + sélecteur de langue -->
+<header>
+  <h1><span class="dot" aria-hidden="true"></span> BPM Atelier</h1>
+  <select id="lang" aria-label="Langue / Language / Tutlayt">
+    <option value="fr">Français</option>
+    <option value="en">English</option>
+    <option value="kab">Taqbaylit</option>
+  </select>
+</header>
+<p id="kabNote" class="note" hidden data-i18n="kabNote"></p>
+
+<main>
+  <!-- Bloc 1 : tap tempo -->
+  <section class="card" id="tapCard">
+    <h2 data-i18n="tapTitle"></h2>
+    <button id="tap" class="tap" aria-live="polite"><span id="bpmBig">--</span><small>BPM</small></button>
+    <p class="hint" data-i18n="tapHint"></p>
+    <div class="row">
+      <label><span data-i18n="manual"></span>
+        <input id="bpm" type="number" min="20" max="300" step="0.1" value="120"></label>
+      <button id="half">÷2</button><button id="dbl">×2</button>
+      <button id="reset" data-i18n="reset"></button>
+      <button id="metro" data-i18n="metroOn"></button>
+    </div>
+  </section>
+
+  <!-- Bloc 2 : temps de délai / réverb -->
+  <section class="card">
+    <h2 data-i18n="delayTitle"></h2>
+    <table id="delays"><thead><tr>
+      <th data-i18n="note"></th><th data-i18n="straight"></th><th data-i18n="dotted"></th><th data-i18n="triplet"></th><th>Hz</th>
+    </tr></thead><tbody></tbody></table>
+    <p class="hint" data-i18n="copyHint"></p>
+  </section>
+
+  <!-- Bloc 3 : montage vidéo -->
+  <section class="card">
+    <h2 data-i18n="videoTitle"></h2>
+    <div class="row">
+      <label>FPS <select id="fps">
+        <option>23.976</option><option selected>24</option><option>25</option><option>29.97</option><option>30</option><option>50</option><option>60</option>
+      </select></label>
+      <label><span data-i18n="every"></span> <select id="every">
+        <option value="1" data-i18n="beat1"></option><option value="2" data-i18n="beat2"></option><option value="4" selected data-i18n="bar"></option><option value="8" data-i18n="bar2"></option>
+      </select></label>
+      <label><span data-i18n="count"></span> <input id="count" type="number" min="1" max="200" value="16"></label>
+    </div>
+    <p id="frameInfo" class="info"></p>
+    <ol id="cuts" class="cuts"></ol>
+    <div class="row">
+      <button id="copyCuts" data-i18n="copyList"></button>
+      <button id="dlCsv" data-i18n="dlCsv"></button>
+    </div>
+  </section>
+</main>
+<footer><span data-i18n="footer"></span> · MIT · <a href="https://github.com/salimadour31-boop/bpm-atelier">GitHub</a></footer>
+<div id="toast" role="status"></div>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
